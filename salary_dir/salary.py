@@ -1,4 +1,6 @@
-salary_file = 'salaries.txt'
+from pathlib import Path
+current_dir = Path(__file__).parent
+salary_file = current_dir / 'salaries.txt'
 def total_salary(salary_file):
    
     with open(salary_file, 'r', encoding='utf-8') as file:
