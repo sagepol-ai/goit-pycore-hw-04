@@ -26,7 +26,7 @@ def add_color_to_dir(path_color, level=0):
         return
 
     # Виводимо назву поточної папки синім кольором
-    print('  ' * level + Fore.BLUE + f"📂 {p.name}")
+    print('  ' * level + Fore.BLUE + f" {p.name}")
 
     # Проходимо по всіх елементах у поточній папці
     for item in p.iterdir():
@@ -35,7 +35,7 @@ def add_color_to_dir(path_color, level=0):
             add_color_to_dir(item, level + 1)
         else:
             # Якщо це файл виводимо білим кольором
-            print('  ' * (level + 1) + Fore.WHITE + f"📜 {item.name}")
+            print('  ' * (level + 1) + Fore.WHITE + f" {item.name}")
 
 # Викликаємо функцію, передаючи шлях, отриманий із командного рядка
 if __name__ == "__main__":
