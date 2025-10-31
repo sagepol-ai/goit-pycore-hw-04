@@ -7,8 +7,6 @@ from colorama import Fore, init
 # Ініціалізуємо бібліотеку colorama для кольорового виведення в термінал
 init(autoreset=True)
 
-# Отримуємо шлях до директорії з аргументів командного рядка
-path_color = sys.argv[1]
 
 def add_color_to_dir(path_color, level=0):
     """
@@ -45,5 +43,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Будь ласка, вкажіть шлях до директорії.")
     else:
-        add_color_to_dir(sys.argv[1])
+        # Отримуємо шлях до директорії з аргументів командного рядка
+        path_color = sys.argv[1]
+        add_color_to_dir(path_color)
 
