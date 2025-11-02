@@ -8,7 +8,7 @@ current_dir = Path(__file__).parent
 if str(current_dir) not in sys.path:
     sys.path.append(str(current_dir))
 
-
+#імпортуємо необхідні функції з інших модулів
 from parse_bot import read_message
 from speak_bot import handle_speak
 from date_bot import add_contact, change_contact, show_phone, show_all
@@ -18,34 +18,37 @@ def main():
     contacts = {}
     started = False
     handle_speak("welcome")  # привітання
-
+# основний цикл бота
     while True:
         user_input = input("Enter a command: ")
         result, started, args = read_message(user_input, started)
 
-        if result in ["close", "exit"]:
+        if result in ["close", "exit"]:                 # вихід з бота
             handle_speak("goodbye")
             break
 
-        elif result == "Start":
+        elif result == "Start":                 # початок роботи бота       
             handle_speak("start")
 
-        elif result == "add":
+        elif result == "help":            # допомога користувачу
+            handle_speak("help")
+
+        elif result == "add":            # додавання контакту
             handle_speak("add", add_contact(args, contacts))
 
-        elif result == "change":
+        elif result == "change":        # зміна контакту
             handle_speak("change", change_contact(args, contacts))
 
-        elif result == "phone":
+        elif result == "phone":     # показати номер телефону контакту
             handle_speak("phone", show_phone(args, contacts))
 
-        elif result == "all":
+        elif result == "all":       # показати всі контакти
             handle_speak("all", show_all(contacts))
 
-        elif result == "hello":
+        elif result == "hello":     # повторне привітання
             handle_speak("start")
 
-        else:
+        else:                 # обробка помилок
             handle_speak("error", result)
 
 

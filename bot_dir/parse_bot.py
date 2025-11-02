@@ -2,13 +2,13 @@
 def read_message(input_message, started):
     message = input_message.strip().lower()
 
-    if not started:
+    if not started:      # якщо бот ще не стартував
         if message == "hello":
             return "Start", True, []
         else:
             return "Please write 'hello' to start.", False, []
 
-    else:
+    else:           # якщо бот вже стартував
         parts = message.split()
         if not parts:
             return "Invalid command.", True, []
@@ -16,7 +16,7 @@ def read_message(input_message, started):
         cmd = parts[0]
         args = parts[1:]
 
-        valid_commands = ["add", "change", "phone", "all", "close", "exit", "hello"]
+        valid_commands = ["add", "change", "phone", "all", "close", "exit", "hello", "help"]                                 
 
         if cmd in valid_commands:
             return cmd, True, args
