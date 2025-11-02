@@ -1,29 +1,33 @@
 # Додавання контакту
 def add_contact(args, contacts):
-    if len(args) != 2:
-        return "Usage: add [name] [phone]"
-    name, phone = args
-    name = name.capitalize() 
+    try:
+        if len(args) != 2:
+            return "Usage: add [name] [phone]"
+        name, phone = args
+        name = name.capitalize()
+        if not phone.isdigit():
+            return "Phone number must contain only digits."
+        if name in contacts:
+            return "Contact already exists. Use 'change' to update."
+        contacts[name] = phone
+        return "Contact added."
+    except Exception as e:
+        return f"Unexpected error: {e}"
 
-    # використовуємо show_phone для перевірки існування контакту
-    exists = show_phone([name], contacts)
-    if exists != f"Contact '{name}' not found.":
-        return "Contact already exists. Use 'change' to update."
-
-    contacts[name] = phone
-    return "Contact added."
 
 # Зміна контакту
 def change_contact(args, contacts):
-    if len(args) != 2:
-        return "Usage: change [name] [new phone]"
-    name, phone = args
-    name = name.capitalize()             
-    if name in contacts:
+    try:
+        if len(args) != 2:
+            return "Usage: change [name] [new phone]"
+        name, phone = args
+        name = name.capitalize()
+        if name not in contacts:
+            return f"Contact '{name}' not found."
         contacts[name] = phone
         return "Contact updated."
-    else:
-        return f"Contact '{name}' not found."
+    except Exception as e:
+        return f"Unexpected error: {e}"
 
 
 # Показати номер телефону контакту
